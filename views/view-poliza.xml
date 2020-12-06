@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="contabilidad.poliza.list">
+            <field name="name">poliza list</field>
+            <field name="model">contabilidad.poliza</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="duration"/>
+                    <field name="cost"/>
+                    <field name="date_contract"/>
+                </tree>
+            </field>
+        </record>
+
+    <!-- accion de la ventana contabilidad.poliza.action_windows-->
+        <record model="ir.actions.act_window" id="contabilidad.poliza_action_window">
+            <field name="name">poliza window</field>
+            <field name="res_model">contabilidad.poliza</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- accion del servidor-->
+        <record model="ir.actions.server" id="contabilidad.poliza_action_server">
+            <field name="name">poliza server</field>
+            <field name="model_id" ref="model_contabilidad_poliza"/>
+            <field name="state">code</field>
+            <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+            </field>
+        </record>
+        
+    <!-- nombre de los menu raiza-->
+        <menuitem name="contabilidad" id="contabilidad.menu_root"/>
+        <!--                                                        aqqui ejecuta la ventana contabilidad.poliza.action_windows-->
+        <menuitem name="poliza" id="contabilidad.menu_poliza" parent="contabilidad.menu_root" action="contabilidad_action_windows"/>
+
+
+    </data>
+</odoo>
