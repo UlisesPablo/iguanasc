@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="libros.poliza_list">
+          <field name="polizas">libros list</field>
+          <field name="model">libros.poliza</field>
+          <field name="arch" type="xml">
+                <tree>
+                  <field name="name"/>
+                  <field name="cost"/>
+                  <field name="date_contract"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="libros.poliza_action_window">
+            <field name="name">poliza window</field> 
+            <field name="res_model">libros.poliza</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.server" id="libros.poliza_action_server">
+             <field name="name">poliza server</field>
+             <field name="model_id" ref="model_libros_libros"/>
+             <field name="state">code</field>
+             <field name="code">
+            action = {
+                "type": "ir.actions.act_window",
+                "view_mode":"tree,form",
+                "res_model": self._name,
+            }
+                 </field>
+         </record>
+
+         <menuitem name="libros" id="libros.menu_root"/>
+         <menuitem name="poliza" id="libros.menu_poliza" parent="libros.menu_root" actions="libros.poliza_action_window">
+    </data>
+</odoo>
